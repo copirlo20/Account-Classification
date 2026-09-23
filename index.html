@@ -408,10 +408,18 @@
   }
   .legend{display:flex; flex-wrap:wrap; gap:14px 18px; margin-top:18px;}
   .legend span{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft);}
-  @media (max-width:520px){
-    .barchart .row, .axis{grid-template-columns:96px 1fr 52px; gap:8px;}
-    .barchart .label{font-size:12px;}
-    .barchart .val{font-size:12px;}
+  @media (max-width:560px){
+    .barchart .row{
+      grid-template-columns:1fr auto;
+      grid-template-areas:"label val" "track track";
+      row-gap:7px; column-gap:10px; padding-block:10px;
+    }
+    .barchart .label{grid-area:label;}
+    .barchart .label b{overflow:visible; text-overflow:clip; white-space:normal;}
+    .track{grid-area:track;}
+    .barchart .val{grid-area:val; font-size:12.5px;}
+    .axis{grid-template-columns:1fr;}
+    .axis > div:first-child, .axis > div:last-child{display:none;}
   }
 
   /* ============ donut charts ============ */
@@ -509,6 +517,7 @@
   }
   @media (max-width:860px){
     .flow{flex-direction:column;}
+    .flow .node{flex:0 1 auto;}
     .flow .arrow{transform:rotate(90deg); flex-basis:22px;}
   }
 
